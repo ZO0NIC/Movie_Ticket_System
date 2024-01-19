@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="226" pageHeight="651" columnWidth="186" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0c672eb9-9797-4a28-857a-199503127087">
+	<property name="ireport.zoom" value="2.5937424601000028"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="invo" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     sales_product.`id` AS sales_product_id,
+     sales_product.`sales_id` AS sales_product_sales_id,
+     sales_product.`tickettype` AS sales_product_tickettype,
+     sales_product.`qty` AS sales_product_qty,
+     sales_product.`price` AS sales_product_price,
+     sales_product.`total` AS sales_product_total,
+     sales.`id` AS sales_id,
+     sales.`subtotal` AS sales_subtotal,
+     sales.`pay` AS sales_pay,
+     sales.`balance` AS sales_balance,
+     movieshow.`id` AS movieshow_id,
+     movieshow.`movie_id` AS movieshow_movie_id,
+     movieshow.`moviename` AS movieshow_moviename,
+     movieshow.`timing` AS movieshow_timing
+FROM
+     `sales_product` sales_product INNER JOIN `sales` sales ON sales_product.`sales_id` = sales.`id`
+     INNER JOIN `movieshow` movieshow ON sales.`id` = movieshow.`movie_id`
+WHERE
+     $P{invo}&movieshow.`movie_id` = $P{invo}]]>
+	</queryString>
+	<field name="sales_product_id" class="java.lang.Integer"/>
+	<field name="sales_product_sales_id" class="java.lang.Integer"/>
+	<field name="sales_product_tickettype" class="java.lang.String"/>
+	<field name="sales_product_qty" class="java.lang.Integer"/>
+	<field name="sales_product_price" class="java.lang.Integer"/>
+	<field name="sales_product_total" class="java.lang.Integer"/>
+	<field name="sales_id" class="java.lang.Integer"/>
+	<field name="sales_subtotal" class="java.lang.Integer"/>
+	<field name="sales_pay" class="java.lang.Integer"/>
+	<field name="sales_balance" class="java.lang.Integer"/>
+	<field name="movieshow_id" class="java.lang.Integer"/>
+	<field name="movieshow_movie_id" class="java.lang.Integer"/>
+	<field name="movieshow_moviename" class="java.lang.String"/>
+	<field name="movieshow_timing" class="java.lang.String"/>
+	<group name="sales">
+		<groupFooter>
+			<band height="59">
+				<textField>
+					<reportElement x="152" y="3" width="28" height="15" uuid="2f739fa9-496c-4bbd-8b4e-a752a02136cb"/>
+					<textElement>
+						<font size="7"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{sales_subtotal}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="152" y="22" width="28" height="14" uuid="93e4cf51-e744-4fc6-9940-d1b1b1d8a546"/>
+					<textElement>
+						<font size="7"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{sales_pay}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="152" y="43" width="28" height="13" uuid="345c1349-ed27-4c92-8c79-d838c548886d"/>
+					<textElement>
+						<font size="7"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{sales_balance}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="112" y="4" width="31" height="15" uuid="64c0e84d-32d7-4dc0-aad9-980f43603cc8"/>
+					<textElement>
+						<font size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Subtotal]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="112" y="22" width="31" height="15" uuid="84eacd73-0350-44ba-bb45-e5c4f0707262"/>
+					<textElement>
+						<font size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Payment]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="112" y="41" width="31" height="15" uuid="c9a1a624-184c-4a1a-9133-018189f8be4d"/>
+					<textElement>
+						<font size="7" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Balance]]></text>
+				</staticText>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="60" y="10" width="61" height="20" uuid="a3888139-1032-49bb-a4e9-59824ab43b20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Movie Ticket]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="64" y="69" width="18" height="10" uuid="c2fe8d4f-7b5d-44af-a1b1-4b755e041b01"/>
+				<textElement>
+					<font size="7" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sales_id}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="2" y="69" width="59" height="10" uuid="83ebfe7c-6974-4c85-b302-c52ad3d8a19c"/>
+				<textElement>
+					<font size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Invoice Number]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="5" y="15" width="50" height="10" uuid="ae612b5a-be1a-43be-82bc-1397e6f80264"/>
+				<textElement>
+					<font size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TicketType]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="58" y="15" width="24" height="10" uuid="09678b26-3677-44ec-8c53-5855a80d6550"/>
+				<textElement>
+					<font size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Price]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="97" y="15" width="24" height="10" uuid="bc244aa5-35f7-451c-9658-be03457e6365"/>
+				<textElement>
+					<font size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Qty]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="142" y="15" width="24" height="10" uuid="b206b869-d96c-4a91-8ec5-0403c21561df"/>
+				<textElement>
+					<font size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="35" splitType="Stretch">
+			<textField>
+				<reportElement x="15" y="6" width="30" height="12" uuid="544388a7-0a9b-4a5b-ba94-9e19ca3003ab"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sales_product_tickettype}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="55" y="6" width="27" height="12" uuid="7cda0553-5ce9-471f-9b74-130dc98d3f2a"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sales_product_price}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="97" y="6" width="28" height="12" uuid="344249dc-4c27-43a6-8052-6008c6484fee"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sales_product_qty}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="141" y="6" width="30" height="12" uuid="f0317e3d-2c89-41d7-8836-8ba505917bcb"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sales_product_total}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="-6" y="34" width="186" height="1" uuid="f07dff08-cec5-40f7-a5aa-58b4fbea47a7"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
